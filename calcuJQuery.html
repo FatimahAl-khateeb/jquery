@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="calcuJQuery.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   
+    
+    </head>
+    
+    <body>
+  <div class="calculator">
+
+  <div id="calculator-screen"></div>
+
+  <div class="calculator-keys">
+
+    <button type="button"  class="keys" data-action="operator" id="+" value='1'>+</button>
+    <button type="button"  class="keys" data-action="operator" id="-" value='2'>-</button>
+    <button type="button"  class="keys" data-action="operator" id="*" value='3'>*</button>
+    <button type="button"  class="keys" data-action="operator" id="/" value='4'>/</button>
+
+    <button type="button"  class="keys" id="btn7" value="7">7</button>
+    <button type="button"  class="keys" id="btn8" value="8">8</button>
+    <button type="button"  class="keys" id="btn9" value="9">9</button>
+
+
+    <button type="button"  class="keys" id="btn4" value="4">4</button>
+    <button type="button"  class="keys" id="btn5" value="5">5</button>
+    <button type="button"  class="keys" id="btn6" value="6">6</button>
+
+
+    <button type="button"  class="keys" id="btn1" value="1" >1</button>
+    <button type="button"  class="keys" id="btn2" value="2" >2</button>
+    <button type="button"  class="keys" id="btn3" value="3" >3</button>
+
+    <button type="button"  class="keys" id="btn0" value="0">0</button>
+    <button type="button"  class="keys" id="decimal" value=".">.</button>
+    <button type="button"  class="all-clear" id="all-clear" data-action="clear">CE</button>
+
+    <button type="button" class="equal-sign" id="equal-result"  data-action="equal">=</button>
+    <div id="demo"></div>
+</div>
+</div>
+     
+         <script>
+        
+   $(document).ready(function(){
+    var disID,firstNum="",secondNum="",oper=0,result;
+    var match,val,data;
+   
+    function Ui(){
+     
+        
+        $("#equal-result").click(function(){
+             
+               
+                    firstNum = parseFloat(firstNum);
+                    secondNum = parseFloat(secondNum);
+                  
+                    if(oper== "+"){
+                        result = firstNum+secondNum;
+                    }
+                    else if (oper== "-"){
+                        result = firstNum-secondNum;
+                    }
+                    else if (oper== "*"){
+                        result = firstNum*secondNum;
+                    }
+                    else if (oper== "/"){
+                        result = firstNum/secondNum;
+                    }
+                    
+                 
+                   $("#calculator-screen").text(result); 
+                   
+
+    });
+        
+     $("#all-clear").click(function(){
+              
+                    firstNum="";
+                    secondNum="";
+                    oper=0;
+                    match=0;
+                   $("#calculator-screen").text("");
+              
+    });
+        
+     $(".keys").click(function(){
+         
+               
+                val=$(this).text(); 
+                data= $(this).attr("data-action");
+         
+                 if(data == undefined && match!= 1){ 
+                     firstNum+=val;  match=0; 
+                     $("#calculator-screen").text(firstNum);
+                 }
+                 else if (data=="operator"){
+                    oper=val; match=1; 
+                     disID =$(this).text();    
+                     $("#calculator-screen").text(disID);
+                 }
+                 else if (data == undefined && match== 1){
+                     secondNum+=val; 
+                     $("#calculator-screen").text(secondNum);
+                 }
+                   
+               
+    }); 
+               
+                  
+              }
+            var obj=new Ui(); // Necessary to enter Ui class 
+         
+    
+    
+});
+            
+            //paused function with e parameter (reading teamtreehouse)
+        //NOTES: 
+        // selector button it could hold clear and equal buttons --> Solved
+        //place of jQuery's code (inside head or body)
+        // my code stopped suddenly from time to time it waste my time   
+             
+       </script>
+
+    </body>
+
+</html>
